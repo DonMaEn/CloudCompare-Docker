@@ -4,17 +4,15 @@
 set -e
 
 # Extract the input filename
-INPUT=${@:1}
+INPUT=${@:1:1}
 if [ "${INPUT}" = "" ]; then
-    echo "Error: No input filename specified" >&2
+    echo "Error: No input directory specified" >&2
     exit -1
 fi
-echo ${INPUT}
-inputfn=$(basename ${INPUT})
 
 docker run -it --rm -e DISPLAY=$DISPLAY \
     --net=host \
-    -v ${INPUT}:/data/${inputfn}:z \
+    -v ${INPUT}:/data:z \
     -v ~/.Xauthority:/root/.Xauthority:z \
     --security-opt label=type:container_runtime_t \
-    ut/cloudcompare:latest CloudCompare /data/${inputfn}
+    ut/cloudcompare:latest CloudCompare ${@:2}
