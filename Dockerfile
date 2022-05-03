@@ -31,6 +31,4 @@ RUN mkdir build && \
     cmake -DPLUGIN_IO_QPDAL=ON .. && \
     cmake --build . && \
     cmake --install .
-#COPY entrypoint.sh /cloudcompare
-#ENV PATH="/cloudcompare/build/qCC:${PATH}"
 CMD ["/cloudcompare/build/qCC/CloudCompare"]
