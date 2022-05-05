@@ -21,7 +21,9 @@ jobs:
       run:
         docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
     - name: Build the Docker image
-      run: ./build.sh
+      run:
+        ls -l
+        ./build.sh
     - name: Docker Push
       run:
         release=$(git describe --tags --long)
