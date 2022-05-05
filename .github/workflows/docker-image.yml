@@ -20,10 +20,13 @@ jobs:
         DOCKER_PASSWORD: ${{secrets.DOCKER_PASSWORD}}
       run:
         docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
+    - name: Set env
+        run: echo "RELEASE_VERSION=${GITHUB_REF#refs/*/}" >> $GITHUB_ENV
     - name: Build the Docker image
       run: |
         ./build.sh
+        docker tag donaldmaen/cloudcompare:latest donaldmaen/cloudcompare:${{env.RELEASE_VERSION}}
+
     - name: Docker Push
       run: |
-        release=$(git describe --tags --long)
-        docker push ${{secrets.DOCKER_USER}}/cloudcompare:${release}
+        docker push ${{secrets.DOCKER_USER}}/cloudcompare:${{env.RELEASE_VERSION}}
