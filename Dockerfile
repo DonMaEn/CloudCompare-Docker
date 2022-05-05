@@ -25,7 +25,8 @@ RUN apt-get update && \
     git && \
     mkdir /cloudcompare
 WORKDIR /cloudcompare
-RUN git clone --recursive https://github.com/cloudcompare/CloudCompare.git .
+RUN git clone -b v2.12.0 --single-branch --recursive \
+    https://github.com/cloudcompare/CloudCompare.git .
 RUN mkdir build && \
     cd build && \
     cmake -DPLUGIN_IO_QPDAL=ON .. && \
