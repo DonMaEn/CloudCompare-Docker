@@ -6,7 +6,7 @@ A dockerized version of CloudCompare based on ubuntu 20.04, and compiled with th
 To build, simply run the build.sh script
 
 # Useage
-To use the docker image once is has been built, use the cloudcompare.sh script.
+To use the docker image once it has been built, use the cloudcompare.sh script.
 This script will start the docker container, mount the indicated directory to the
 container in the /data directory, and then run any further commands passed to
 it in CloudCompare
